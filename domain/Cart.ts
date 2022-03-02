@@ -1,4 +1,5 @@
-import { Product } from "./Product"
+import { deepCopy } from "../utils/deepCopy"
+import { Product } from "./product"
 
 export type CartItem = {
   product: Product,
@@ -8,14 +9,17 @@ export type CartItem = {
 
 export type Cart = CartItem[]
 
-export function addCartItemInCart(cart: Cart, newCartItem: CartItem) {
+export function addCartItemInCart(initialCart: Cart, initialNewCartItem: CartItem): Cart {
+  const cart: Cart = deepCopy(initialCart)
+  const newCartItem: CartItem = deepCopy(initialNewCartItem)
+
   const isCartItemAlreadyInCart: boolean = cart.some((cartItem) => {
     return cartItem.product.id === newCartItem.product.id && cartItem.color === newCartItem.color
   })
 
   if (isCartItemAlreadyInCart) {
     const indexCartItemToUpdate: number = cart.findIndex((cartItem) => {
-      cartItem.product.id === newCartItem.product.id
+      return cartItem.product.id === newCartItem.product.id
     })
 
     cart[indexCartItemToUpdate].quantity += 1
