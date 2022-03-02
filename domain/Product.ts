@@ -1,3 +1,5 @@
+import { uniq } from "../utils/general"
+
 export type Product = {
   id: number
   name: string
@@ -11,5 +13,6 @@ export type Product = {
 export type ProductList = Product[]
 
 export function getProductIdList(productList: ProductList): number[] {
-  return productList.map((product: Product) => product.id)
+  const productIdList = productList.map((product: Product) => product.id)
+  return uniq(productIdList)
 }
