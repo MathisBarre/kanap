@@ -1,18 +1,25 @@
+import Image from "next/image";
 import Link from "next/link";
+import { Product } from "../domain/Product";
 
-export default function ProductItem() {
+interface ProductProps {
+  product: Product
+}
+
+export default function ProductItem({ product }: ProductProps) {
   return (
-    <Link href="/product?id=42">
+    <Link href={`/product?id=${product.id}`}>
       <a>
         <article>
-          <img
-            src=".../product01.jpg"
-            alt="Lorem ipsum dolor sit amet, Kanap name1"
+          <Image
+            src={product.imageUrl}
+            alt={product.name}
+            height={160}
+            width={160}
           />
-          <h3 className="productName">Kanap name1</h3>
+          <h3 className="productName">{product.name}</h3>
           <p className="productDescription">
-            Dis enim malesuada risus sapien gravida nulla nisl arcu. Dis enim
-            malesuada risus sapien gravida nulla nisl arcu.
+            {product.description}
           </p>
         </article>
       </a>
