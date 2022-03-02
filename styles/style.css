@@ -111,6 +111,7 @@ h2 {
 	height: 550px;
 	object-fit: cover;
 	display: flex;
+  position: relative;
 }
 
 

@@ -1,10 +1,12 @@
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <footer>
       <div className="limitedWidthBlockContainer footerMain">
         <div className="limitedWidthBlock">
           <div>
-            <img className="logo" src="../images/logo.png" alt="Logo de l'entreprise" />
+            <Image height={100} width={84}  className="logo" src="/images/logo.png" alt="Logo de l'entreprise" />
           </div>
           <div>
             <p>10 quai de la charente <br />75019 Paris 19</p>

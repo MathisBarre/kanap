@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Header() {
@@ -6,16 +7,16 @@ export default function Header() {
       <div className="limitedWidthBlockContainer informations">
         <div className="limitedWidthBlock">
           <ul>
-            <li><img src="../images/icons/phone.svg" alt="logo de téléphone" className="informations__phone" />01 23 45 67 89</li>
-            <li><img src="../images/icons/mail.svg" alt="logo d'une enveloppe" className="informations__mail" />support@name.com</li>
-            <li><img src="../images/icons/adress.svg" alt="logo d'un point de géolocalisation" className="informations__address" />01 23 45 67 89</li>
+            <li><Image height={17} width={17} src="/images/icons/phone.svg" alt="logo de téléphone" className="informations__phone" /><div style={{ width : 10 }} />01 23 45 67 89</li>
+            <li><Image height={17} width={17} src="/images/icons/mail.svg" alt="logo d'une enveloppe" className="informations__mail" /><div style={{ width : 10 }} />support@name.com</li>
+            <li><Image height={17} width={17} src="/images/icons/adress.svg" alt="logo d'un point de géolocalisation" className="informations__address" />01 23 45 67 89</li>
           </ul>
         </div>
       </div>
       <div className="limitedWidthBlockContainer menu">
         <div className="limitedWidthBlock">
           <a href="./index.html">
-            <img className="logo" src="../images/logo.png" alt="Logo de l'entreprise" />
+            <Image height={100} width={84} className="logo" src="/images/logo.png" alt="Logo de l'entreprise" />
           </a>
           <nav>
             <ul>
@@ -25,7 +26,9 @@ export default function Header() {
           </nav>
         </div>
       </div>
-      <img className="banniere" src="../images/banniere.png" alt="Baniere" />
+      <div className="banniere">
+        <Image  src="/images/banniere.png" alt="Baniere" layout="fill" objectFit="cover" />
+      </div>
     </header>
   )
 }
