@@ -15,9 +15,11 @@ export default function Header() {
       </div>
       <div className="limitedWidthBlockContainer menu">
         <div className="limitedWidthBlock">
-          <a href="./index.html">
-            <Image height={100} width={84} className="logo" src="/images/logo.png" alt="Logo de l'entreprise" />
-          </a>
+          <Link href="/">
+            <a>
+              <Image height={100} width={84} className="logo" src="/images/logo.png" alt="Logo de l'entreprise" />
+            </a>
+          </Link>
           <nav>
             <ul>
               <Link href="/"><a><li>Accueil</li></a></Link>
