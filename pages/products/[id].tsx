@@ -3,7 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { ProductFetcherService } from "../../application/ports";
 import retrieveProductIdList from "../../application/retrieveProductIdList";
-import { Product } from "../../domain/Product";
+import { Product } from "../../domain/product";
 import utilizeProductFetcher from "../../services/fetcherService";
 
 interface ProductPageProps {
