@@ -1,6 +1,6 @@
-import { productFetcherService } from "../application/ports";
+import { ProductFetcherService } from "../application/ports";
 
-export default function utilizeProductFetcher(): productFetcherService {
+export default function utilizeProductFetcher(): ProductFetcherService {
   return {
     async fetchOneProduct(id) {
       return {
@@ -8,6 +8,12 @@ export default function utilizeProductFetcher(): productFetcherService {
         name: "name",
         description: "description",
         imageUrl: "/images/canape.jpeg",
+        altTxt: "altTxt",
+        colors: [
+          "color1",
+          "color2",
+        ],
+        price: 123
       }
     },
 
@@ -18,12 +24,24 @@ export default function utilizeProductFetcher(): productFetcherService {
           name: "name",
           description: "description",
           imageUrl: "/images/canape.jpeg",
+          altTxt: "altTxt",
+          colors: [
+            "color1",
+            "color2",
+          ],
+          price: 123
         },
         {
           id: 2,
           name: "name",
           description: "description",
           imageUrl: "/images/canape.jpeg",
+          altTxt: "altTxt",
+          colors: [
+            "color1",
+            "color2",
+          ],
+          price: 123
         }
       ]
     }

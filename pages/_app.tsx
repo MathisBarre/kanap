@@ -3,12 +3,14 @@ import Head from "next/head";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import "../styles/style.css"
+import "../styles/cart.css"
+import "../styles/confirmation.css"
+import "../styles/product.css"
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Kanap</title>
         <meta
           name="description"
           content="Kanap, projet 5 du parcours développeur web chez Openclassrooms"
