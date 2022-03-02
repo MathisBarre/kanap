@@ -8,7 +8,7 @@ interface ProductProps {
 
 export default function ProductItem({ product }: ProductProps) {
   return (
-    <Link href={`/product/${encodeURIComponent(product.id)}`}>
+    <Link href={`/products/${encodeURIComponent(product.id)}`}>
       <a>
         <article>
           <Image
