@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import ProductItem from '../components/ProductItem'
 
 const Home: NextPage = () => {
   return (
@@ -9,13 +10,7 @@ const Home: NextPage = () => {
           <h2>Une gamme d&apos;articles exclusifs</h2>
         </div>
         <section className="items" id="items"> 
-          <a href="./product.html?id=42">
-            <article>
-              <img src=".../product01.jpg" alt="Lorem ipsum dolor sit amet, Kanap name1" />
-              <h3 className="productName">Kanap name1</h3>
-              <p className="productDescription">Dis enim malesuada risus sapien gravida nulla nisl arcu. Dis enim malesuada risus sapien gravida nulla nisl arcu.</p>
-            </article>
-          </a>
+          <ProductItem />
         </section>
       </div>
     </main>
