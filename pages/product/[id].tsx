@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
+import Image from "next/image";
 import { ProductFetcherService } from "../../application/ports";
 import retrieveProductIdList from "../../application/retrieveProductIdList";
 import { Product } from "../../domain/Product";
@@ -23,7 +24,7 @@ export default function ProductPage({ product }: ProductPageProps) {
           <section className="item">
             <article>
               <div className="item__img">
-                <img src={product.imageUrl} alt={product.altTxt} />
+                <Image height={670} width={670} src={product.imageUrl} alt={product.altTxt} />
               </div>
               <div className="item__content">
                 <div className="item__content__titlePrice">
