@@ -20,8 +20,8 @@ export default function ProductPage({ product }: ProductPageProps) {
   function onAddProductButton() {
     const newProduct: CartItem = {
       product,
-      quantity,
-      color,
+      quantity: selectedQuantity,
+      color: selectedColor,
     };
 
     try {
@@ -32,8 +32,8 @@ export default function ProductPage({ product }: ProductPageProps) {
     }
   }
 
-  const [quantity, setQuantity] = useState<number>(0);
-  const [color, setColor] = useState<string>("");
+  const [selectedQuantity, setSelectedQuantity] = useState<number>(1);
+  const [selectedColor, setSelectedColor] = useState<string>("");
 
   return (
     <>
@@ -68,7 +68,7 @@ export default function ProductPage({ product }: ProductPageProps) {
                 <div className="item__content__settings">
                   <div className="item__content__settings__color">
                     <label htmlFor="color-select">Choisir une couleur :</label>
-                    <select name="color-select" id="colors">
+                    <select value={selectedColor} name="color-select" id="colors" onChange={(e) => setSelectedColor(e.target.value)}>
                       <option value="">--SVP, choisissez une couleur --</option>
                       {product.colors.map((color: string) => {
                         return (
@@ -88,7 +88,8 @@ export default function ProductPage({ product }: ProductPageProps) {
                       name="itemQuantity"
                       min={1}
                       max={100}
-                      defaultValue={0}
+                      value={selectedQuantity}
+                      onChange={(e) => setSelectedQuantity(parseInt(e.target.value, 10))}
                       id="quantity"
                     />
                   </div>
