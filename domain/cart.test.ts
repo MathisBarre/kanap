@@ -68,5 +68,35 @@ describe("Cart domain", () => {
       // Assert
       expect(updatedCart).toEqual([fakeCartItem, cartItemWithDifferentColor])
     })
+
+    it("should throw error if no selected color", () => {
+      // Arrange
+      const cart: Cart = [fakeCartItem]
+      const cartItemWithDifferentColor: CartItem = deepCopy(fakeCartItem)
+      cartItemWithDifferentColor.color = ""
+
+      // Act
+      const t = () => {
+        addCartItemInCart(cart, cartItemWithDifferentColor)
+      }
+
+      // Assert
+      expect(t).toThrow()
+    })
+
+    it("should not throw error if selected color", () => {
+      // Arrange
+      const cart: Cart = [fakeCartItem]
+      const cartItemWithDifferentColor: CartItem = deepCopy(fakeCartItem)
+      cartItemWithDifferentColor.color = "a color"
+
+      // Act
+      const t = () => {
+        addCartItemInCart(cart, cartItemWithDifferentColor)
+      }
+
+      // Assert
+      expect(t).not.toThrow()
+    })
   })
 })
