@@ -1,7 +1,6 @@
 import { ProductFetcherService } from "../application/ports";
 
-export default function utilizeProductFetcher(): ProductFetcherService {
-  return {
+const productFetcherService: ProductFetcherService = {
     async fetchOneProduct(id) {
       return {
         id: 1,
@@ -45,5 +44,6 @@ export default function utilizeProductFetcher(): ProductFetcherService {
         }
       ]
     }
-  }
 }
+
+export default productFetcherService

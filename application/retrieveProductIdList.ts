@@ -1,9 +1,10 @@
 import { getProductIdList, ProductList } from "../domain/product"
-import utilizeProductFetcher from "../services/fetcherService"
-import { ProductFetcherService } from "./ports"
+import productFetcherService from "../services/productFetcher"
+import productFetcher from "../services/productFetcher"
+import { ProductFetcher } from "./ports"
 
 export default async function retrieveProductIdList(
-  productFetcher: ProductFetcherService = utilizeProductFetcher()
+  productFetcher: ProductFetcher = productFetcherService
 ): Promise<number[]> {
   const productList: ProductList = await productFetcher.fetchAllProducts()
   const productIdList: number[] = getProductIdList(productList)

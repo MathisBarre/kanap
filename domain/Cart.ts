@@ -13,7 +13,7 @@ export function addCartItemInCart(initialCart: Cart, initialNewCartItem: CartIte
   const cart: Cart = deepCopy(initialCart)
   const newCartItem: CartItem = deepCopy(initialNewCartItem)
 
-  if (newCartItem.color === "") throw new Error("Cart item color should not be empty")
+  if (newCartItem.color === "") throw new Error("EMPTY_COLOR | Cart item color should not be empty")
 
   const isCartItemAlreadyInCart: boolean = cart.some((cartItem) => {
     return cartItem.product.id === newCartItem.product.id && cartItem.color === newCartItem.color

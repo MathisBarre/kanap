@@ -1,9 +1,9 @@
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
-import { ProductFetcherService } from '../application/ports'
+import { ProductFetcher } from '../application/ports'
 import ProductItem from '../components/ProductItem'
 import { Product, ProductList } from '../domain/product'
-import utilizeProductFetcher from '../services/fetcherService'
+import productFetcher from '../services/productFetcher'
 
 interface HomeProps {
   productList: ProductList
@@ -33,8 +33,7 @@ export default function Home({ productList }: HomeProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const ProductFetcherService: ProductFetcherService = utilizeProductFetcher()
-  const productList: ProductList = await ProductFetcherService.fetchAllProducts()
+  const productList = await productFetcher.fetchAllProducts()
 
   return {
     props: {

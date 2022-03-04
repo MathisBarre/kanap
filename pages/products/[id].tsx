@@ -3,12 +3,11 @@ import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
 import addProductToCart from "../../application/addProductToCart";
-import { ProductFetcherService } from "../../application/ports";
+import { ProductFetcher } from "../../application/ports";
 import retrieveProductIdList from "../../application/retrieveProductIdList";
 import { CartItem } from "../../domain/cart";
 import { Product } from "../../domain/product";
-import utilizeProductFetcher from "../../services/fetcherService";
-import { utilizeCartStorage } from "../../services/storageAdaptater";
+import productFetcher from "../../services/productFetcher";
 
 interface ProductPageProps {
   product: Product;
@@ -112,7 +111,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const productFetcherService: ProductFetcherService = utilizeProductFetcher();
+  const productFetcherService: ProductFetcher = productFetcher;
 
   if (!context.params?.id) throw new Error("post identifier is missing");
 

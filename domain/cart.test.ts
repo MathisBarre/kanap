@@ -70,33 +70,20 @@ describe("Cart domain", () => {
     })
 
     it("should throw error if no selected color", () => {
+      expect.assertions(1)
+
       // Arrange
       const cart: Cart = [fakeCartItem]
       const cartItemWithDifferentColor: CartItem = deepCopy(fakeCartItem)
       cartItemWithDifferentColor.color = ""
 
-      // Act
-      const t = () => {
+      try {
+        // Act
         addCartItemInCart(cart, cartItemWithDifferentColor)
+      } catch (error: any) {
+        // Assert
+        expect(error?.message.startsWith("EMPTY_COLOR")).toBe(true)
       }
-
-      // Assert
-      expect(t).toThrow()
-    })
-
-    it("should not throw error if selected color", () => {
-      // Arrange
-      const cart: Cart = [fakeCartItem]
-      const cartItemWithDifferentColor: CartItem = deepCopy(fakeCartItem)
-      cartItemWithDifferentColor.color = "a color"
-
-      // Act
-      const t = () => {
-        addCartItemInCart(cart, cartItemWithDifferentColor)
-      }
-
-      // Assert
-      expect(t).not.toThrow()
     })
   })
 })
