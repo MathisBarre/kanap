@@ -9,5 +9,4 @@ export interface ProductFetcherService {
 export interface CartStorageService {
   getCart(): Cart
   setCart(cart: Cart): void
-  updateCart(cart: Cart): void
 }
