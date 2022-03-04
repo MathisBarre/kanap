@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import addProductToCart from "../../application/addProductToCart";
 import { ProductFetcher } from "../../application/ports";
@@ -14,6 +15,8 @@ interface ProductPageProps {
 }
 
 export default function ProductPage({ product }: ProductPageProps) {
+  const router = useRouter()
+
   function onAddProductButton() {
     const newProduct: CartItem = {
       product,
@@ -21,7 +24,12 @@ export default function ProductPage({ product }: ProductPageProps) {
       color,
     };
 
-    addProductToCart(newProduct);
+    try {
+      addProductToCart(newProduct);
+      router.push("/cart")
+    } catch(error) {
+      console.error(error)
+    }
   }
 
   const [quantity, setQuantity] = useState<number>(0);

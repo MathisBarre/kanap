@@ -15,10 +15,10 @@ export default function addProductToCart(
   try {
     updatedCart = addCartItemInCart(cart, cartItem);
   } catch (error: any) {
-    if (error?.message.startsWith("EMPTY_COLOR")) {
-      return notifier.notify("Il est obligatoire de saisire une couleur")
-    }
-    throw error
+    if (error?.message.startsWith("EMPTY_COLOR"))
+      notifier.notify("Il est obligatoire de saisire une couleur");
+
+    throw error;
   }
 
   cartStorage.setCart(updatedCart);
