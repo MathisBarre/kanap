@@ -24,7 +24,7 @@ export function addCartItemInCart(initialCart: Cart, initialNewCartItem: CartIte
       return cartItem.product.id === newCartItem.product.id
     })
 
-    cart[indexCartItemToUpdate].quantity += 1
+    cart[indexCartItemToUpdate].quantity += newCartItem.quantity
   } else {
     cart.push(newCartItem)
   }

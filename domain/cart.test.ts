@@ -22,18 +22,44 @@ describe("Cart domain", () => {
   describe("Add cart item into cart", () => {
     it("should increase quantity when adding the same cart item", () => {
       // Arrange
-      const cart: Cart = [fakeCartItem]
+      const cart: Cart = [deepCopy(fakeCartItem)]
 
       // Act
-      let updatedCart = addCartItemInCart(cart, fakeCartItem)
+      let updatedCart = addCartItemInCart(cart, deepCopy(fakeCartItem))
 
       // Assert
       expect(updatedCart[0].quantity).toBe(2)
     })
 
+    it("should increase quantity when adding the same cart item with 16 quantity", () => {
+      // Arrange
+      const cartItem: CartItem = deepCopy(fakeCartItem)
+      cartItem.quantity = 16
+      const cart: Cart = [deepCopy(fakeCartItem)]
+
+      // Act
+      let updatedCart = addCartItemInCart(cart, cartItem)
+
+      // Assert
+      expect(updatedCart[0].quantity).toBe(17)
+    })
+
+    it("should not increase quantity when adding the same cart item with 0 quantity", () => {
+      // Arrange
+      const cartItem: CartItem = deepCopy(fakeCartItem)
+      cartItem.quantity = 0
+      const cart: Cart = [deepCopy(fakeCartItem)]
+
+      // Act
+      let updatedCart = addCartItemInCart(cart, cartItem)
+
+      // Assert
+      expect(updatedCart[0].quantity).toBe(1)
+    })
+
     it("should not alterate params", () => {
       // Arrange
-      const cart: Cart = [fakeCartItem]
+      const cart: Cart = [deepCopy(fakeCartItem)]
 
       // Act
       const updatedCart = addCartItemInCart(cart, fakeCartItem)
@@ -45,7 +71,7 @@ describe("Cart domain", () => {
 
     it("should add new cart item if there is no same cart item with same id", () => {
       // Arrange
-      const cart: Cart = [fakeCartItem]
+      const cart: Cart = [deepCopy(fakeCartItem)]
       const cartItemWithDifferentId: CartItem = deepCopy(fakeCartItem)
       cartItemWithDifferentId.product.id = 2
 
@@ -58,7 +84,7 @@ describe("Cart domain", () => {
 
     it("should add new cart item if there is no same cart item with same id and color", () => {
       // Arrange
-      const cart: Cart = [fakeCartItem]
+      const cart: Cart = [deepCopy(fakeCartItem)]
       const cartItemWithDifferentColor: CartItem = deepCopy(fakeCartItem)
       cartItemWithDifferentColor.color = "orange"
 
@@ -73,7 +99,7 @@ describe("Cart domain", () => {
       expect.assertions(1)
 
       // Arrange
-      const cart: Cart = [fakeCartItem]
+      const cart: Cart = [deepCopy(fakeCartItem)]
       const cartItemWithDifferentColor: CartItem = deepCopy(fakeCartItem)
       cartItemWithDifferentColor.color = ""
 
