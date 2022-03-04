@@ -2,7 +2,7 @@ import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import { ProductFetcherService } from '../application/ports'
 import ProductItem from '../components/ProductItem'
-import { Product, ProductList } from '../domain/Product'
+import { Product, ProductList } from '../domain/product'
 import utilizeProductFetcher from '../services/fetcherService'
 
 interface HomeProps {
@@ -24,7 +24,7 @@ export default function Home({ productList }: HomeProps) {
           </div>
           <section className="items" id="items"> 
             {productList.map((product: Product) => {
-              return <ProductItem key={product.name} product={product} />
+              return <ProductItem key={product.id} product={product} />
             })}
           </section>
         </div>

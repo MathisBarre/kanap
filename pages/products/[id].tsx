@@ -1,17 +1,30 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import { useState } from "react";
+import addProductToCart from "../../application/addProductToCart";
 import { ProductFetcherService } from "../../application/ports";
 import retrieveProductIdList from "../../application/retrieveProductIdList";
 import { Product } from "../../domain/product";
 import utilizeProductFetcher from "../../services/fetcherService";
+import { utilizeCartStorage } from "../../services/storageAdaptater";
 
 interface ProductPageProps {
   product: Product;
 }
 
 export default function ProductPage({ product }: ProductPageProps) {
-  console.log(product);
+  function onAddProductButton() {
+    addProductToCart({
+      product,
+      quantity,
+      color,
+    }, utilizeCartStorage())
+  }
+
+  const [quantity, setQuantity] = useState<number>(0)
+  const [color, setColor] = useState<string>("")
+
   return (
     <>
       <Head>
@@ -43,7 +56,7 @@ export default function ProductPage({ product }: ProductPageProps) {
                   <div className="item__content__settings__color">
                     <label htmlFor="color-select">Choisir une couleur :</label>
                     <select name="color-select" id="colors">
-                      <option value="">--SVP, choisissez une couleur --</option>
+                      <option value="" >--SVP, choisissez une couleur --</option>
                       {product.colors.map((color: string) => {
                         return (
                           <option key={color} value={color}>
@@ -68,7 +81,7 @@ export default function ProductPage({ product }: ProductPageProps) {
                   </div>
                 </div>
                 <div className="item__content__addButton">
-                  <button id="addToCart">Ajouter au panier</button>
+                  <button id="addToCart" onClick={() => onAddProductButton()}>Ajouter au panier</button>
                 </div>
               </div>
             </article>

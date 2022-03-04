@@ -1,5 +1,5 @@
-import { Cart } from "../domain/Cart";
-import { Product, ProductList } from "../domain/Product";
+import { Cart } from "../domain/cart";
+import { Product, ProductList } from "../domain/product";
 
 export interface ProductFetcherService {
   fetchOneProduct(id: number): Promise<Product>
@@ -7,5 +7,7 @@ export interface ProductFetcherService {
 }
 
 export interface CartStorageService {
-  cart: Cart
+  getCart(): Cart
+  setCart(cart: Cart): void
+  updateCart(cart: Cart): void
 }
