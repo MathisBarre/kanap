@@ -1,6 +1,6 @@
-import { ProductFetcherService } from "../application/ports";
+import { ProductFetcher } from "../application/ports";
 
-const productFetcherService: ProductFetcherService = {
+const productFetcherService: ProductFetcher = {
     async fetchOneProduct(id) {
       return {
         id: 1,
