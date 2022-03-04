@@ -5,6 +5,7 @@ import { useState } from "react";
 import addProductToCart from "../../application/addProductToCart";
 import { ProductFetcherService } from "../../application/ports";
 import retrieveProductIdList from "../../application/retrieveProductIdList";
+import { CartItem } from "../../domain/cart";
 import { Product } from "../../domain/product";
 import utilizeProductFetcher from "../../services/fetcherService";
 import { utilizeCartStorage } from "../../services/storageAdaptater";
@@ -15,29 +16,34 @@ interface ProductPageProps {
 
 export default function ProductPage({ product }: ProductPageProps) {
   function onAddProductButton() {
-    addProductToCart({
+    const newProduct: CartItem = {
       product,
       quantity,
       color,
-    }, utilizeCartStorage())
+    };
+
+    addProductToCart(newProduct);
   }
 
-  const [quantity, setQuantity] = useState<number>(0)
-  const [color, setColor] = useState<string>("")
+  const [quantity, setQuantity] = useState<number>(0);
+  const [color, setColor] = useState<string>("");
 
   return (
     <>
       <Head>
-        <title>
-          Canapé {product.name} - Kanap par Openclassrooms
-        </title>
+        <title>Canapé {product.name} - Kanap par Openclassrooms</title>
       </Head>
       <main className="limitedWidthBlockContainer">
         <div className="limitedWidthBlock">
           <section className="item">
             <article>
               <div className="item__img">
-                <Image height={670} width={670} src={product.imageUrl} alt={product.altTxt} />
+                <Image
+                  height={670}
+                  width={670}
+                  src={product.imageUrl}
+                  alt={product.altTxt}
+                />
               </div>
               <div className="item__content">
                 <div className="item__content__titlePrice">
@@ -56,7 +62,7 @@ export default function ProductPage({ product }: ProductPageProps) {
                   <div className="item__content__settings__color">
                     <label htmlFor="color-select">Choisir une couleur :</label>
                     <select name="color-select" id="colors">
-                      <option value="" >--SVP, choisissez une couleur --</option>
+                      <option value="">--SVP, choisissez une couleur --</option>
                       {product.colors.map((color: string) => {
                         return (
                           <option key={color} value={color}>
@@ -81,7 +87,9 @@ export default function ProductPage({ product }: ProductPageProps) {
                   </div>
                 </div>
                 <div className="item__content__addButton">
-                  <button id="addToCart" onClick={() => onAddProductButton()}>Ajouter au panier</button>
+                  <button id="addToCart" onClick={() => onAddProductButton()}>
+                    Ajouter au panier
+                  </button>
                 </div>
               </div>
             </article>

@@ -10,7 +10,6 @@ interface HomeProps {
 }
 
 export default function Home({ productList }: HomeProps) {
-  console.log(productList)
   return (
     <>
       <Head>

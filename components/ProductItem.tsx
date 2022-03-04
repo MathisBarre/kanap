@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Product } from "../domain/Product";
+import { Product } from "../domain/product";
 
 interface ProductProps {
   product: Product
