@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { CartItem } from "../../../domain/cart";
 
 interface CartListItemProps {
@@ -5,6 +6,8 @@ interface CartListItemProps {
 }
 
 export function CartListItem({ cartItem }: CartListItemProps) {
+  const [selectedQuantity, setSelectedQuantity] = useState(cartItem.quantity)
+  
   return (
     <article
       className="cart__item"
@@ -29,6 +32,7 @@ export function CartListItem({ cartItem }: CartListItemProps) {
               name="itemQuantity"
               min={1}
               max={100}
+              value={selectedQuantity}
             />
           </div>
           <div className="cart__item__content__settings__delete">
