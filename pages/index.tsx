@@ -1,7 +1,7 @@
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import { ProductFetcher } from '../application/ports'
-import ProductItem from '../components/ProductItem'
+import ProductItem from '../components/ProductCard'
 import { Product, ProductList } from '../domain/product'
 import productFetcher from '../services/productFetcher'
 

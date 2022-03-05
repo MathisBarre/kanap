@@ -1,7 +1,7 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+import Footer from "../components/app/Footer";
+import Header from "../components/app/Header";
 import "../styles/style.css"
 import "../styles/cart.css"
 import "../styles/confirmation.css"

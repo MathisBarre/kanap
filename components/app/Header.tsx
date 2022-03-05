@@ -23,7 +23,7 @@ export default function Header() {
           <nav>
             <ul>
               <Link href="/"><a><li>Accueil</li></a></Link>
-              <Link href="/cart"><a><li>Panier</li></a></Link>
+              <Link href="/panier"><a><li>Panier</li></a></Link>
             </ul>
           </nav>
         </div>

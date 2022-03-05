@@ -26,7 +26,7 @@ export default function ProductPage({ product }: ProductPageProps) {
 
     try {
       addProductToCart(newProduct);
-      router.push("/cart")
+      router.push("/panier")
     } catch(error) {
       console.error(error)
     }
