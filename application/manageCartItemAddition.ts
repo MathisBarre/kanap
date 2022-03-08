@@ -3,11 +3,11 @@ import { cartStorageAdaptater } from "../adaptaters/storageAdaptater";
 import { CartStorage, Notifier } from "./ports";
 import notifierAdaptater from "../adaptaters/notifierAdapter";
 
-export default function addProductToCart(
+export default function manageCartItemAddition(
   cartItem: CartItem,
   cartStorage: CartStorage = cartStorageAdaptater,
   notifier: Notifier = notifierAdaptater
-) {
+): void {
   const cart: Cart = cartStorage.getCart();
 
   let updatedCart: Cart;

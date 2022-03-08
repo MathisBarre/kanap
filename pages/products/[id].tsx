@@ -3,9 +3,9 @@ import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import addProductToCart from "../../application/addProductToCart";
+import manageCartItemAddition from "../../application/manageCartItemAddition";
 import { ProductFetcher } from "../../application/ports";
-import retrieveProductIdList from "../../application/retrieveProductIdList";
+import manageProductIdListRetrieval from "../../application/manageProductIdListRetrieval";
 import { CartItem } from "../../domain/cart";
 import { Product } from "../../domain/product";
 import productFetcher from "../../services/productFetcher";
@@ -18,14 +18,14 @@ export default function ProductPage({ product }: ProductPageProps) {
   const router = useRouter()
 
   function onAddProductButton() {
-    const newProduct: CartItem = {
+    const newCartItem: CartItem = {
       product,
       quantity: selectedQuantity,
       color: selectedColor,
     };
 
     try {
-      addProductToCart(newProduct);
+      manageCartItemAddition(newCartItem);
       router.push("/panier")
     } catch(error) {
       console.error(error)
@@ -109,7 +109,7 @@ export default function ProductPage({ product }: ProductPageProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const productIdList: number[] = await retrieveProductIdList();
+  const productIdList: number[] = await manageProductIdListRetrieval();
 
   return {
     paths: productIdList.map((productId: number) => {
