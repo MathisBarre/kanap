@@ -1,9 +1,9 @@
 import { fetchAllProducts } from "../../api/products/fetchAllProducts"
 import { getProductIdList, ProductList } from "../../domain/product"
 
-export default async function retrieveProductIdList(): Promise<number[]> {
+export default async function retrieveProductIdList(): Promise<string[]> {
   const productList: ProductList = await fetchAllProducts()
-  const productIdList: number[] = getProductIdList(productList)
+  const productIdList: string[] = getProductIdList(productList)
 
   return productIdList
 }

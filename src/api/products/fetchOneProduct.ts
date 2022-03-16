@@ -1,16 +1,6 @@
 import { Product } from "../../domain/product";
+import products from "./hardCodedProducts.data"
 
-export async function fetchOneProduct(id: number): Promise<Product> {
-  return {
-    id: 1,
-    name: "name",
-    description: "description",
-    imageUrl: "/images/canape.jpeg",
-    altTxt: "altTxt",
-    colors: [
-      "color1",
-      "color2",
-    ],
-    price: 123
-  }
+export async function fetchOneProduct(id: string): Promise<Product> {
+  return products.filter((product) => product.id === id)[0]
 }

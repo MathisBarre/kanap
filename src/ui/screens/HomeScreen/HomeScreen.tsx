@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import ProductItem from '../../../ui/screens/HomeScreen/ProductCard'
 import { Product, ProductList } from '../../../domain/product'
+import { fetchOneProduct } from '../../../api/products/fetchOneProduct'
 
 interface HomeScreenProps {
   productList: ProductList

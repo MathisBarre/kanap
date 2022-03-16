@@ -6,11 +6,11 @@ import { Product } from "../../domain/product";
 export { default } from "../../ui/screens/ProductScreen/ProductScreen"
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const productIdList: number[] = await manageProductIdListRetrieval();
+  const productIdList: string[] = await manageProductIdListRetrieval();
 
   return {
-    paths: productIdList.map((productId: number) => {
-      return { params: { id: productId.toString() } };
+    paths: productIdList.map((productId: string) => {
+      return { params: { id: productId } };
     }),
     fallback: false,
   };
@@ -19,7 +19,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   if (!context.params?.id) throw new Error("post identifier is missing");
 
-  const productId: number = parseInt(context.params?.id as string, 10);
+  let productId = context.params?.id
+  if(typeof productId === "object") productId = productId[0]
+
   const product: Product = await fetchOneProduct(
     productId
   );
