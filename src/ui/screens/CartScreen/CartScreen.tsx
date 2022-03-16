@@ -1,9 +1,15 @@
 import { CartListItem } from "./CartListItem";
 import { Cart, CartItem } from "../../../domain/cart";
-import { getCart } from "../../../utils/storage";
+import * as storage from "../../../utils/storage";
+import { useEffect, useState } from "react";
 
-export default function CartPage() {
-  const cart: Cart = getCart();
+export default function CartScreen() {
+  const [cart, setCart] = useState<Cart>([])
+
+  useEffect(() => {
+    setCart(storage.getCart())
+  }, [])
+  
 
   return (
     <main className="limitedWidthBlockContainer">
