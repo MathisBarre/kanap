@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <meta
           name="description"
-          content="Kanap, projet 5 du parcours développeur web chez Openclassrooms"
+          content="Kanap, projet 5 (p5) du parcours développeur web chez Openclassrooms. Anciennement Orinoco. Réalisé par Mathis Barré."
         />
       </Head>
       <Header />

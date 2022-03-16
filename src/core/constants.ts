@@ -1,0 +1,1 @@
+export const titlePrefix = "- Kanap, projet 5 par Openclassrooms"

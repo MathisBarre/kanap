@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import ProductItem from '../../../ui/screens/HomeScreen/ProductCard'
 import { Product, ProductList } from '../../../domain/product'
-import { fetchOneProduct } from '../../../api/products/fetchOneProduct'
+import { titlePrefix } from '../../../core/constants'
 
 interface HomeScreenProps {
   productList: ProductList
@@ -11,7 +11,7 @@ export default function HomeScreen({ productList }: HomeScreenProps) {
   return (
     <>
       <Head>
-        <title>Kanap par Openclassrooms</title>
+        <title>Nos produits {titlePrefix}</title>
       </Head>
       <main className="limitedWidthBlockContainer">
         <div className="limitedWidthBlock">

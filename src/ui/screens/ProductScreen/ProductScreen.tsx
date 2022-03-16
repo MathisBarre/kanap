@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import manageCartItemAddition from "../../../application/cart/manageCartItemAddition";
+import { titlePrefix } from "../../../core/constants";
 import { CartItem } from "../../../domain/cart";
 import { Product } from "../../../domain/product";
 
@@ -34,7 +35,7 @@ export default function ProductScreen({ product }: ProductScreenProps) {
   return (
     <>
       <Head>
-        <title>Canapé {product.name} - Kanap par Openclassrooms</title>
+        <title>Canapé &quot;{product.name}&quot; {titlePrefix}</title>
       </Head>
       <main className="limitedWidthBlockContainer">
         <div className="limitedWidthBlock">
