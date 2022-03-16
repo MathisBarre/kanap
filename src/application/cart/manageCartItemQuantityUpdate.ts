@@ -4,7 +4,7 @@ import * as storage from "../../utils/storage"
 export default function manageCartItemQuantityUpdate(cartItem: CartItem, newQuantity: number) {
   const cart: Cart = storage.getCart()
 
-  updateCartItemQuantity(cart, cartItem, newQuantity)
+  const updatedCart = updateCartItemQuantity(cart, cartItem, newQuantity)
 
-  storage.setCart(cart)
+  storage.setCart(updatedCart)
 }
