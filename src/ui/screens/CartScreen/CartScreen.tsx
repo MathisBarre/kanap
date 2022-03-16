@@ -9,7 +9,6 @@ export default function CartScreen() {
   useEffect(() => {
     setCart(storage.getCart())
   }, [])
-  
 
   return (
     <main className="limitedWidthBlockContainer">
@@ -22,7 +21,8 @@ export default function CartScreen() {
                 return (
                   <CartListItem
                     cartItem={cartItem}
-                    key={`${cartItem.product.id}.${cartItem.product.colors}`}
+                    setCart={setCart}
+                    key={`${cartItem.product.id}.${cartItem.color}`}
                   />
                 );
               })}

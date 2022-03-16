@@ -1,17 +1,26 @@
-import { useState } from "react";
+import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
+import manageCartItemDelete from "../../../application/cart/manageCartItemDelete";
 import manageCartItemQuantityUpdate from "../../../application/cart/manageCartItemQuantityUpdate";
-import { CartItem } from "../../../domain/cart";
+import { Cart, CartItem } from "../../../domain/cart";
 
 interface CartListItemProps {
   cartItem: CartItem
+  setCart: Dispatch<SetStateAction<Cart>>
 }
 
-export function CartListItem({ cartItem }: CartListItemProps) {
+export function CartListItem({ cartItem, setCart }: CartListItemProps) {
   const [selectedQuantity, setSelectedQuantity] = useState(cartItem.quantity)
 
-  function onQuantityUpdate(newQuantity: number) {
+  function onQuantityUpdate(event: ChangeEvent<HTMLInputElement>) {
+    const newQuantity: number = parseInt(event.target.value, 10)
+
     setSelectedQuantity(newQuantity)
     manageCartItemQuantityUpdate(cartItem, newQuantity)
+  }
+
+  function onDelete() {
+    const updatedCart = manageCartItemDelete(cartItem)
+    setCart(updatedCart)
   }
   
   return (
@@ -39,11 +48,11 @@ export function CartListItem({ cartItem }: CartListItemProps) {
               min={1}
               max={100}
               value={selectedQuantity}
-              onChange={(e) => onQuantityUpdate(e.target.value)}
+              onChange={(e) => onQuantityUpdate(e)}
             />
           </div>
           <div className="cart__item__content__settings__delete">
-            <p className="deleteItem">Supprimer</p>
+            <p className="deleteItem" onClick={() => onDelete()}>Supprimer</p>
           </div>
         </div>
       </div>

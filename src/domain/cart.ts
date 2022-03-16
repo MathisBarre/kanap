@@ -39,7 +39,13 @@ export function findCartItemIndex(cart: Cart, cartItem: CartItem): number {
 }
 
 export function updateCartItemQuantity(cart: Cart, cartItem: CartItem, newQuantity: number): Cart {
-  const updatedCartItemIndex = findCartItemIndex(cart, cartItem)
-  cart[updatedCartItemIndex].quantity = newQuantity
+  const indexCartItemToUpdate = findCartItemIndex(cart, cartItem)
+  cart[indexCartItemToUpdate].quantity = newQuantity
+  return cart
+}
+
+export function deleteCartItem(cart: Cart, cartItem: CartItem): Cart {
+  const indexCartItemToDelete = findCartItemIndex(cart, cartItem)
+  cart.splice(indexCartItemToDelete, 1)
   return cart
 }
