@@ -49,3 +49,15 @@ export function deleteCartItem(cart: Cart, cartItem: CartItem): Cart {
   cart.splice(indexCartItemToDelete, 1)
   return cart
 }
+
+export function getCartTotalPrice(cart: Cart): number {
+  return cart.reduce((totalPrice, cartItem: CartItem) => {
+    return cartItem.quantity * cartItem.product.price + totalPrice
+  }, 0)
+}
+
+export function getCartTotalItemsQuantity(cart: Cart): number {
+  return cart.reduce((totalQuantity, cartItem: CartItem) => {
+    return cartItem.quantity + totalQuantity
+  }, 0)
+}

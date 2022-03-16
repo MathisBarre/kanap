@@ -1,45 +1,64 @@
 import { CartListItem } from "./CartListItem";
-import { Cart, CartItem } from "../../../domain/cart";
+import {
+  Cart,
+  CartItem,
+  getCartTotalItemsQuantity,
+  getCartTotalPrice,
+} from "../../../domain/cart";
 import * as storage from "../../../utils/storage";
 import { useEffect, useState } from "react";
+import Head from "next/head";
+import { titlePrefix } from "../../../core/constants";
 
 export default function CartScreen() {
-  const [cart, setCart] = useState<Cart>([])
+  const [cart, setCart] = useState<Cart>([]);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [totalQuantity, setTotalQuantity] = useState<number>(0);
 
   useEffect(() => {
-    setCart(storage.getCart())
-  }, [])
+    const cart = storage.getCart();
+    setCart(cart);
+    setTotalPrice(getCartTotalPrice(cart));
+  }, []);
+
+  useEffect(() => {
+    setTotalPrice(getCartTotalPrice(cart));
+    setTotalQuantity(getCartTotalItemsQuantity(cart));
+  }, [cart]);
 
   return (
-    <main className="limitedWidthBlockContainer">
-      <div className="limitedWidthBlock" id="limitedWidthBlock">
-        <div className="cartAndFormContainer" id="cartAndFormContainer">
-          <h1>Votre panier</h1>
-          <section className="cart">
-            <section id="cart__items">
-              {cart.map((cartItem: CartItem) => {
-                return (
-                  <CartListItem
-                    cartItem={cartItem}
-                    setCart={setCart}
-                    key={`${cartItem.product.id}.${cartItem.color}`}
-                  />
-                );
-              })}
-            </section>
-            <div className="cart__price">
-              <p>
-                Total (<span id="totalQuantity">{/* 2 */}</span> articles) :{" "}
-                <span id="totalPrice">{/* 84,00 */}</span> €
-              </p>
-            </div>
-            <div className="cart__order">
+    <>
+      <Head>
+        <title>Panier {titlePrefix}</title>
+      </Head>
+      <main className="limitedWidthBlockContainer">
+        <div className="limitedWidthBlock" id="limitedWidthBlock">
+          <div className="cartAndFormContainer" id="cartAndFormContainer">
+            <h1>Votre panier</h1>
+            <section className="cart">
+              <section id="cart__items">
+                {cart.map((cartItem: CartItem) => {
+                  return (
+                    <CartListItem
+                      cartItem={cartItem}
+                      setCart={setCart}
+                      key={`${cartItem.product.id}.${cartItem.color}`}
+                    />
+                  );
+                })}
+              </section>
+              <div className="cart__price">
+                <p>
+                  Total (<span id="totalQuantity">{totalQuantity}</span>{" "}
+                  articles) : <span id="totalPrice">{totalPrice}</span> €
+                </p>
+              </div>
+              {/* <div className="cart__order">
               <form method="get" className="cart__order__form">
                 <div className="cart__order__form__question">
                   <label htmlFor="firstName">Prénom: </label>
                   <input type="text" name="firstName" id="firstName" required />
                   <p id="firstNameErrorMsg">
-                    {/* ci est un message d'erreur */}
                   </p>
                 </div>
                 <div className="cart__order__form__question">
@@ -66,10 +85,11 @@ export default function CartScreen() {
                   <input type="submit" defaultValue="Commander !" id="order" />
                 </div>
               </form>
-            </div>
-          </section>
+            </div> */}
+            </section>
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   );
 }

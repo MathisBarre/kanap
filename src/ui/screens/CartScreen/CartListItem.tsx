@@ -9,13 +9,11 @@ interface CartListItemProps {
 }
 
 export function CartListItem({ cartItem, setCart }: CartListItemProps) {
-  const [selectedQuantity, setSelectedQuantity] = useState(cartItem.quantity)
-
   function onQuantityUpdate(event: ChangeEvent<HTMLInputElement>) {
     const newQuantity: number = parseInt(event.target.value, 10)
 
-    setSelectedQuantity(newQuantity)
-    manageCartItemQuantityUpdate(cartItem, newQuantity)
+    const updatedCart = manageCartItemQuantityUpdate(cartItem, newQuantity)
+    setCart(updatedCart)
   }
 
   function onDelete() {
@@ -47,7 +45,7 @@ export function CartListItem({ cartItem, setCart }: CartListItemProps) {
               name="itemQuantity"
               min={1}
               max={100}
-              value={selectedQuantity}
+              value={cartItem.quantity}
               onChange={(e) => onQuantityUpdate(e)}
             />
           </div>
