@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Cart, CartItem } from "../../../domain/cart";
-import { deepCopy } from "../../../utils/functions";
+import manageCartItemQuantityUpdate from "../../../application/cart/manageCartItemQuantityUpdate";
+import { CartItem } from "../../../domain/cart";
 
 interface CartListItemProps {
   cartItem: CartItem
@@ -9,20 +9,9 @@ interface CartListItemProps {
 export function CartListItem({ cartItem }: CartListItemProps) {
   const [selectedQuantity, setSelectedQuantity] = useState(cartItem.quantity)
 
-  function onCartItemQuantityChange() {
-    const cart: Cart = JSON.parse(localStorage.getItem("cart") || "[]")
-
-    // exract cartItem
-    const indexToExtract = cart.findIndex((ci: CartItem) => {
-      return ci.product.id === cartItem.product.id && ci.color === ci.color
-    })
-
-    const newCartItem: CartItem = deepCopy(cartItem)
-    newCartItem.quantity = selectedQuantity 
-
-    cart.splice(indexToExtract, 1, newCartItem)
-
-    localStorage.setItem("cart", JSON.stringify(cart))
+  function onQuantityUpdate(newQuantity: number) {
+    setSelectedQuantity(newQuantity)
+    manageCartItemQuantityUpdate(cartItem, newQuantity)
   }
   
   return (
@@ -50,6 +39,7 @@ export function CartListItem({ cartItem }: CartListItemProps) {
               min={1}
               max={100}
               value={selectedQuantity}
+              onChange={(e) => onQuantityUpdate(e.target.value)}
             />
           </div>
           <div className="cart__item__content__settings__delete">
