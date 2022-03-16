@@ -2,7 +2,7 @@
 
 Développement avec React & Next.js du projet 5 parcours développeur web chez Openclassrooms.
 
-L'api à été remplacé par des données en dur afin de facilité le déploiement.
+L'api à été remplacée par des données en dur afin de facilité le déploiement.
 
 Cela permet de tester l'application en direct ici : [kanap.mathisbarre.com](https://kanap.mathisbarre.com)
 
