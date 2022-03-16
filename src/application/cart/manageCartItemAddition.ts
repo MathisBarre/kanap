@@ -1,6 +1,6 @@
-import { addCartItemInCart, Cart, CartItem } from "../domain/cart";
-import { notify } from "../utils/notifier";
-import { getCart, setCart } from "../utils/storage";
+import { addCartItemInCart, Cart, CartItem } from "../../domain/cart";
+import { notify } from "../../utils/notifier";
+import { getCart, setCart } from "../../utils/storage";
 
 export default function manageCartItemAddition(cartItem: CartItem): void {
   const cart: Cart = getCart();

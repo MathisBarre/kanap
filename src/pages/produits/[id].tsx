@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { fetchOneProduct } from "../../api/products/fetchOneProduct";
-import manageProductIdListRetrieval from "../../application/manageProductIdListRetrieval";
+import manageProductIdListRetrieval from "../../application/products/manageProductIdListRetrieval";
 import { Product } from "../../domain/product";
 
 export { default } from "../../ui/screens/ProductScreen/ProductScreen"

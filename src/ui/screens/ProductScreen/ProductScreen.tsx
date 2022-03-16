@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import manageCartItemAddition from "../../../application/manageCartItemAddition";
+import manageCartItemAddition from "../../../application/cart/manageCartItemAddition";
 import { CartItem } from "../../../domain/cart";
 import { Product } from "../../../domain/product";
 
