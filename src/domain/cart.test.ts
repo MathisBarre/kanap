@@ -1,5 +1,5 @@
 import { addCartItemInCart, Cart, CartItem } from "./cart";
-import { deepCopy } from "../utils/general";
+import { deepCopy } from "../utils/functions";
 
 const fakeCartItem: CartItem = {
   product: {

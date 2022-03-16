@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Cart, CartItem } from "../../../domain/cart";
-import { deepCopy } from "../../../utils/general";
+import { deepCopy } from "../../../utils/functions";
 
 interface CartListItemProps {
   cartItem: CartItem

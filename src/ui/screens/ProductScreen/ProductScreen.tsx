@@ -1,20 +1,16 @@
-import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import manageCartItemAddition from "../../application/manageCartItemAddition";
-import { ProductFetcher } from "../../application/ports";
-import manageProductIdListRetrieval from "../../application/manageProductIdListRetrieval";
-import { CartItem } from "../../domain/cart";
-import { Product } from "../../domain/product";
-import productFetcher from "../../services/productFetcher";
+import manageCartItemAddition from "../../../application/manageCartItemAddition";
+import { CartItem } from "../../../domain/cart";
+import { Product } from "../../../domain/product";
 
-interface ProductPageProps {
+interface ProductScreenProps {
   product: Product;
 }
 
-export default function ProductPage({ product }: ProductPageProps) {
+export default function ProductScreen({ product }: ProductScreenProps) {
   const router = useRouter()
 
   function onAddProductButton() {
@@ -107,31 +103,3 @@ export default function ProductPage({ product }: ProductPageProps) {
     </>
   );
 }
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const productIdList: number[] = await manageProductIdListRetrieval();
-
-  return {
-    paths: productIdList.map((productId: number) => {
-      return { params: { id: productId.toString() } };
-    }),
-    fallback: false,
-  };
-};
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  const productFetcherService: ProductFetcher = productFetcher;
-
-  if (!context.params?.id) throw new Error("post identifier is missing");
-
-  const productId: number = parseInt(context.params?.id as string, 10);
-  const product: Product = await productFetcherService.fetchOneProduct(
-    productId
-  );
-
-  return {
-    props: {
-      product,
-    },
-  };
-};

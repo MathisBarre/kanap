@@ -1,4 +1,4 @@
-import { deepCopy } from "../utils/general";
+import { deepCopy } from "../utils/functions";
 import { getProductIdList, Product, ProductList } from "./product";
 
 const fakeProduct: Product = {

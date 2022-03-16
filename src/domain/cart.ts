@@ -1,4 +1,4 @@
-import { deepCopy } from "../utils/general"
+import { deepCopy } from "../utils/functions"
 import { Product } from "./product"
 
 export type CartItem = {

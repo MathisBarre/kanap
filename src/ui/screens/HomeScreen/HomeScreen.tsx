@@ -1,15 +1,12 @@
-import { GetStaticProps } from 'next'
 import Head from 'next/head'
-import { ProductFetcher } from '../application/ports'
-import ProductItem from '../components/ProductCard'
-import { Product, ProductList } from '../domain/product'
-import productFetcher from '../services/productFetcher'
+import ProductItem from '../../../ui/screens/HomeScreen/ProductCard'
+import { Product, ProductList } from '../../../domain/product'
 
-interface HomeProps {
+interface HomeScreenProps {
   productList: ProductList
 }
 
-export default function Home({ productList }: HomeProps) {
+export default function HomeScreen({ productList }: HomeScreenProps) {
   return (
     <>
       <Head>
@@ -30,14 +27,4 @@ export default function Home({ productList }: HomeProps) {
       </main>
     </>
   )
-}
-
-export const getStaticProps: GetStaticProps = async () => {
-  const productList = await productFetcher.fetchAllProducts()
-
-  return {
-    props: {
-      productList
-    }
-  }
 }

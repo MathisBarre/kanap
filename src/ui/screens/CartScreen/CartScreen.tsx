@@ -1,11 +1,9 @@
-import { cartStorageAdaptater } from "../adaptaters/storageAdaptater";
-import { CartStorage } from "../application/ports";
-import { CartListItem } from "../components/pages/cart/CartListItem";
-import { Cart, CartItem } from "../domain/cart";
+import { CartListItem } from "./CartListItem";
+import { Cart, CartItem } from "../../../domain/cart";
+import { getCart } from "../../../utils/storage";
 
 export default function CartPage() {
-  const cartStorage: CartStorage = cartStorageAdaptater;
-  const cart: Cart = cartStorage.getCart();
+  const cart: Cart = getCart();
 
   return (
     <main className="limitedWidthBlockContainer">

@@ -1,4 +1,4 @@
-import { uniq } from "../utils/general"
+import { uniq } from "../utils/functions"
 
 export type Product = {
   id: number
