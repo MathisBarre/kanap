@@ -32,13 +32,14 @@ export function addCartItemInCart(initialCart: Cart, initialNewCartItem: CartIte
   return cart
 }
 
-export function findCartItemIndex(cart: Cart, cartItem: CartItem) {
+export function findCartItemIndex(cart: Cart, cartItem: CartItem): number {
   return cart.findIndex((ci: CartItem) => {
     return ci.product.id === cartItem.product.id && ci.color === cartItem.color
   })
 }
 
-export function updateCartItemQuantity(cart: Cart, cartItem: CartItem, newQuantity: number) {
+export function updateCartItemQuantity(cart: Cart, cartItem: CartItem, newQuantity: number): Cart {
   const updatedCartItemIndex = findCartItemIndex(cart, cartItem)
-  cart[updatedCartItemIndex].quantity = newQuantity 
+  cart[updatedCartItemIndex].quantity = newQuantity
+  return cart
 }
